@@ -64,8 +64,8 @@ fun Screen() {
                     .verticalScroll(rememberScrollState())
             ) {
                 Column () {
-                    Text("hallo")
-                    Text("Cool8798")
+                    Text("created by")
+                    Text("Mariama djalo Aidara")
                 }
                 Text(
                     "sweet Dreams",
@@ -76,22 +76,26 @@ fun Screen() {
                 Button(
                     onClick = { viewModel.reset() },
                     colors = ButtonDefaults.buttonColors(
-                        backgroundColor = Color.Yellow,   // Sets the background color to red
-                        contentColor = Color.Red    // Sets the text color to white
+                        backgroundColor = Color(255, 51, 133, ),  // Sets the background color to red
+                        contentColor = Color.White    // Sets the text color to white
                     )
                 ) {
-                    Text("Reset Game")
+                    Text("Spiel zurücksetzen")
                 }
 
                 gameState?.let { state ->
                     Text(
-                        "Bank: ${currentMoney?.toHumanReadableString()} Gelds",
+                        "Dein Konto: ${currentMoney?.toHumanReadableString()} Coins",
                         style = MaterialTheme.typography.h4,
                     )
                     Button(
-                        onClick = { viewModel.clickMoney(state) }
+                        onClick = { viewModel.clickMoney(state) },
+                        colors = ButtonDefaults.buttonColors(
+                            backgroundColor = Color(255,51, 133, ),  // Sets the background color to red
+                            contentColor = Color.White    // Sets the text color to white
+                        )
                     ) {
-                        Text("Click money")
+                        Text("Coins generieren")
                     }
 
                     state.availableJobs.forEach { availableJob ->
@@ -120,25 +124,34 @@ private fun Generator(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         modifier = modifier
             .padding(8.dp)
-            .background(Color.LightGray, RoundedCornerShape(8.dp))
+            .background(Color(242,170, 143, ), RoundedCornerShape(8.dp))
             .padding(8.dp)
     ) {
         Column {
-            Text("Generator ${gameJob.id}")
+            Text(" ${gameJob.name}")
             Text("Level: ${gameJob.level.level}")
-            Text("Costs: ${gameJob.level.cost.toHumanReadableString()} Gelds")
-            Text("Earns: ${gameJob.level.earn.toHumanReadableString()} Gelds")
-            Text("Duration: ${gameJob.level.duration.inWholeSeconds} Seconds")
+            Text("Preis: ${gameJob.level.cost.toHumanReadableString()} Coins")
+            Text("gewinn: ${gameJob.level.earn.toHumanReadableString()} Coins")
+            Text("Dauer: ${gameJob.level.duration.inWholeSeconds} Sekunden")
         }
         if (!alreadyBought) {
-            Button(onClick = onBuy) {
-                Text("Buy")
+            Button(
+                onClick = onBuy,
+                colors = ButtonDefaults.buttonColors(
+                    backgroundColor = Color(243,  43,146 ),  // Sets the background color to red
+                    contentColor = Color.White    // Sets the text color to white
+                             )) {
+
+                Text("Kaufen")
             }
         } else {
-            Text("Bought")
+            Text("gekauft")
         }
-        Button(onClick = onUpgrade) {
-            Text("Upgrade")
-        }
+        Button(
+            onClick = onUpgradecolors,
+            colors =ButtonDefaults.buttonColors(
+                 backgroundColor = Color(243,  43,146 ),  // Sets the background color to red
+                 contentColor = Color.White,   // Sets the text color to white) {Text("erweitern")
+
     }
 }
