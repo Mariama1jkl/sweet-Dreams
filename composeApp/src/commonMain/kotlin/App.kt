@@ -1,11 +1,6 @@
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -21,6 +16,10 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import idle_game.composeapp.generated.resources.Res
+import idle_game.composeapp.generated.resources.Screen
+import idle_game.composeapp.generated.resources.image
+import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import util.Gelds
 import util.toHumanReadableString
@@ -57,15 +56,26 @@ fun Screen() {
             val currentMoney: Gelds? by remember(gameState) {
                 derivedStateOf { gameState?.stashedMoney }
             }
-
+            Image(
+                painterResource(Res.drawable.Screen),
+                contentDescription = "A square",
+                modifier = Modifier.offset(
+                    x = 150.dp, y = 0.dp
+                ).width(40000.dp).height(1400.dp)
+            )
 
             Column(
                 modifier = Modifier.fillMaxWidth()
                     .verticalScroll(rememberScrollState())
             ) {
+
+
+
+                Modifier.fillMaxWidth().fillMaxHeight()
+
                 Column () {
                     Text("created by")
-                    Text("Mariama djalo Aidara")
+                    Text("Mariama Djalo Aidara")
                 }
                 Text(
                     "sweet Dreams",
