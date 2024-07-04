@@ -148,10 +148,13 @@ private fun Generator(
             Text("gekauft")
         }
         Button(
-            onClick = onUpgradecolors,
+            onClick = { },
             colors =ButtonDefaults.buttonColors(
                  backgroundColor = Color(243,  43,146 ),  // Sets the background color to red
-                 contentColor = Color.White,   // Sets the text color to white) {Text("erweitern")
+                 contentColor = Color.White
+            )  // Sets the text color to white) {Text("erweitern")
+        ) {Text("erweitern")
 
+        }
     }
 }
