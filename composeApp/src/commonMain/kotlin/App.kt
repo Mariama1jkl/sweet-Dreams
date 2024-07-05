@@ -5,20 +5,15 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.derivedStateOf
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
 import idle_game.composeapp.generated.resources.Res
 import idle_game.composeapp.generated.resources.Screen
-import idle_game.composeapp.generated.resources.image
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import util.Gelds
@@ -52,10 +47,13 @@ fun Screen() {
                 }
             }
 
+
             val gameState: GameState? by viewModel.gameState.collectAsState()
             val currentMoney: Gelds? by remember(gameState) {
                 derivedStateOf { gameState?.stashedMoney }
             }
+            var showDialog by remember { mutableStateOf(false) }
+
             Image(
                 painterResource(Res.drawable.Screen),
                 contentDescription = "A square",
@@ -68,12 +66,26 @@ fun Screen() {
                 modifier = Modifier.fillMaxWidth()
                     .verticalScroll(rememberScrollState())
             ) {
+                if (showDialog) {
+                    MinimalDialog {
+                        showDialog = false
+                    }
+                }
+                Button(
+                    onClick = { showDialog = true },
+                    colors = ButtonDefaults.buttonColors(
+                        backgroundColor = Color(255, 51, 133),  // Sets the background color to red
+                        contentColor = Color.White
+                    )   // Sets the text color to white
+                ) {
+                    Text("Vorgeschichte")
+                }
 
 
 
                 Modifier.fillMaxWidth().fillMaxHeight()
 
-                Column () {
+                Column() {
                     Text("created by")
                     Text("Mariama Djalo Aidara")
                 }
@@ -86,7 +98,7 @@ fun Screen() {
                 Button(
                     onClick = { viewModel.reset() },
                     colors = ButtonDefaults.buttonColors(
-                        backgroundColor = Color(255, 51, 133, ),  // Sets the background color to red
+                        backgroundColor = Color(255, 51, 133),  // Sets the background color to red
                         contentColor = Color.White    // Sets the text color to white
                     )
                 ) {
@@ -101,10 +113,11 @@ fun Screen() {
                     Button(
                         onClick = { viewModel.clickMoney(state) },
                         colors = ButtonDefaults.buttonColors(
-                            backgroundColor = Color(255,51, 133, ),  // Sets the background color to red
+                            backgroundColor = Color(255, 51, 133),  // Sets the background color to red
                             contentColor = Color.White    // Sets the text color to white
                         )
-                    ) {
+                    )
+                    {
                         Text("Coins generieren")
                     }
 
@@ -134,7 +147,7 @@ private fun Generator(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         modifier = modifier
             .padding(8.dp)
-            .background(Color(242,170, 143, ), RoundedCornerShape(8.dp))
+            .background(Color(242, 170, 143), RoundedCornerShape(8.dp))
             .padding(8.dp)
     ) {
         Column {
@@ -148,9 +161,10 @@ private fun Generator(
             Button(
                 onClick = onBuy,
                 colors = ButtonDefaults.buttonColors(
-                    backgroundColor = Color(243,  43,146 ),  // Sets the background color to red
+                    backgroundColor = Color(243, 43, 146),  // Sets the background color to red
                     contentColor = Color.White    // Sets the text color to white
-                             )) {
+                )
+            ) {
 
                 Text("Kaufen")
             }
@@ -159,12 +173,42 @@ private fun Generator(
         }
         Button(
             onClick = { },
-            colors =ButtonDefaults.buttonColors(
-                 backgroundColor = Color(243,  43,146 ),  // Sets the background color to red
-                 contentColor = Color.White
+            colors = ButtonDefaults.buttonColors(
+                backgroundColor = Color(243, 43, 146),  // Sets the background color to red
+                contentColor = Color.White
             )  // Sets the text color to white) {Text("erweitern")
-        ) {Text("erweitern")
+        ) {
+            Text("erweitern")
 
+        }
+    }
+}
+
+@Composable
+fun MinimalDialog(onDismissRequest: () -> Unit) {
+    Dialog(onDismissRequest = { onDismissRequest() }) {
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(500.dp)
+                .padding(10.dp),
+            backgroundColor = Color(232,173,147),
+            shape = RoundedCornerShape(25.dp),
+        ) {
+            Text(
+                text = "In sweet Dreams geht es um  Nayla eine Junge Frau die arm aufgewachsen ist \n" +
+                        "Und keine Familie hat. Ihr Traum ist es eine Bäckerei zu eröffnen um Sich später " +
+                        "ein Sportwagen und eine glamouröse Villa leisten zu können.\n" +
+                        "Mit ihrem hart erarbeiteten Coins stellt sie neu Mitarbeiter ein um ihre Bäckerei " +
+                        "ins rollen zu bringen. Zwischendurch renoviert sie ihre alte Bäckerei in ein Besonderen Ort." +
+                        " Manchmal gehen Mashischinen kaputt oder Mitarbeiter kündigen ihren Job in der Bäckerei.\n" +
+                        "Am Ende des Spiels ist Ihre bäckerei in der ganzen Stadt bekannt und sie kann sich endlich " +
+                        "Ihr Traum Auto und Ihre Traum Villa Kaufen. \n",
+                modifier = Modifier
+                    .fillMaxSize()
+                    .wrapContentSize(Alignment.Center),
+                textAlign = TextAlign.Center,
+            )
         }
     }
 }
