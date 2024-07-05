@@ -13,11 +13,11 @@ data class GameState(
     internal val stashedMoney: Gelds,
     val workers: List<GameWorker>,
     val availableJobs: List<GameJob> = listOf(
-        GameJob(1, Level(1, 670000.gelds, 560009.gelds, 1.seconds), "Einfaches Brot"),
-        GameJob(2, Level(1, 50.gelds, 500.gelds, 1.seconds),"Brezel"),
-        GameJob(3, Level(1, 3000000.gelds, 60000.gelds, 3.seconds),"Franzbrötchen"),
-        GameJob(4, Level(1, 3200.gelds, 8000000.gelds, 6.seconds),"Berliner"),
-        GameJob(5, Level(1, 1000000.gelds, 14000000.gelds, 12.seconds),"Laugenstange")
+        GameJob(1, Level(1, 50.gelds, 20.gelds, 1.seconds), "Einfaches Brot"),
+        GameJob(2, Level(1, 500.gelds, 50.gelds, 1.seconds),"Brezel"),
+        GameJob(3, Level(1, 1500.gelds, 225.gelds, 3.seconds),"Franzbrötchen"),
+        GameJob(4, Level(1, 5000.gelds, 450.gelds, 6.seconds),"Berliner"),
+        GameJob(5, Level(1, 10000.gelds, 5000.gelds, 12.seconds),"Laugenstange")
     ),
 )
 

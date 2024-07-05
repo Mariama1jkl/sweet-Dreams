@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import idle_game.composeapp.generated.resources.Res
 import idle_game.composeapp.generated.resources.Screen
+import idle_game.composeapp.generated.resources.hintergrundbild
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import util.Gelds
@@ -192,7 +193,7 @@ fun MinimalDialog(onDismissRequest: () -> Unit) {
                 .fillMaxWidth()
                 .height(500.dp)
                 .padding(10.dp),
-            backgroundColor = Color(232,173,147),
+            backgroundColor = Color(232, 173, 147),
             shape = RoundedCornerShape(25.dp),
         ) {
             Text(
