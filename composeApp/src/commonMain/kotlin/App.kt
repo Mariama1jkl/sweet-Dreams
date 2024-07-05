@@ -203,7 +203,9 @@ fun MinimalDialog(onDismissRequest: () -> Unit) {
                         "ins rollen zu bringen. Zwischendurch renoviert sie ihre alte Bäckerei in ein Besonderen Ort." +
                         " Manchmal gehen Mashischinen kaputt oder Mitarbeiter kündigen ihren Job in der Bäckerei.\n" +
                         "Am Ende des Spiels ist Ihre bäckerei in der ganzen Stadt bekannt und sie kann sich endlich " +
-                        "Ihr Traum Auto und Ihre Traum Villa Kaufen. \n",
+                        "Ihr Traum Auto und Ihre Traum Villa Kaufen. " +
+                        "Dein Ziel ist es jetzt so viele Münzen zu generieren bis " +
+                        "Nayla sich ihre Träume erfüllen kann\n",
                 modifier = Modifier
                     .fillMaxSize()
                     .wrapContentSize(Alignment.Center),
