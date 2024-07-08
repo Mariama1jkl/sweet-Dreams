@@ -206,7 +206,7 @@ fun MinimalDialog(onDismissRequest: () -> Unit) {
                         "Am Ende des Spiels ist Ihre bäckerei in der ganzen Stadt bekannt und sie kann sich endlich " +
                         "Ihr Traum Auto und Ihre Traum Villa Kaufen. " +
                         "Dein Ziel ist es jetzt so viele Münzen zu generieren bis " +
-                        "Nayla sich ihre Träume erfüllen kann\n",
+                        "Nayla sich ihre Träume erfüllen kann.\n",
                 modifier = Modifier
                     .fillMaxSize()
                     .wrapContentSize(Alignment.Center),
